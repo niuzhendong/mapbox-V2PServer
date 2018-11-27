@@ -20,11 +20,11 @@ http.createServer(function (allreq, allrep) {
       http.get(r,{ 
         headers: {
           'Content-Type': 'application/x-protobuf',
-          'responseType': 'arraybuffer'
+          'Content-Disposition': 'inline; filename=vector.pbf'
         }
       }, function (res) {
         let bdata = [];
-        res.on('data', (chunk) => { bdata.push(Buffer.from(chunk)) });
+        res.on('data', (chunk) => { bdata.push(Buffer.from(chunk,'ascii')) });
         res.on('end', () => {
           try {
             const parsedData = Buffer.concat(bdata);
