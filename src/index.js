@@ -1,11 +1,8 @@
 var urlrequest = require('request');
-var fs = require('fs');
-var path = require('path');
 var url = require('url');
 var mbgl = require('@mapbox/mapbox-gl-native');
 var sharp = require('sharp');
 var http = require("http");
-var encoding = require('encoding');
 
 http.createServer(function (allreq, allrep) {
 
