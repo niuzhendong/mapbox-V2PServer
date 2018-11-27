@@ -1,4 +1,5 @@
 var urlrequest = require('request');
+var axios = require('axios');
 var url = require('url');
 var mbgl = require('@mapbox/mapbox-gl-native');
 var sharp = require('sharp');
@@ -14,30 +15,13 @@ http.createServer(function (allreq, allrep) {
 
   var options = {
     request: function(req, callback) {
-      http.get(r,{ 
-        headers: {
-          'Content-Type': 'application/x-protobuf',
-          'Content-Disposition': 'inline; filename=vector.pbf'
-        }
-      }, function (res) {
-        let bdata = [];
-        res.on('data', (chunk) => { bdata.push(Buffer.from(chunk,'ascii')) });
-        res.on('end', () => {
-          try {
-            const parsedData = Buffer.concat(bdata);
-            console.log(parsedData);
-            callback(true, { data: parsedData });
-          } catch (e) {
-            console.error(e.message);
-          }
-        });
-        // console.log('url:'+r);
-        // console.log(response);
-        // if (!error && response.statusCode == 200) {
-        //   callback(error, { data: vectorData });
-        // }else{
-        //   callback(error, { data:new Buffer.from('') });
-        // }
+      axios({
+        method: 'GET',
+        url: r,
+        responseType: 'arraybuffer'
+      }).then(res => {
+        const buffer = Buffer.from(res.data);
+        callback(true, { data: buffer });
       })
     },
     ratio: 1

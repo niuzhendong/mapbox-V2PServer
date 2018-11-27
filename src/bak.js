@@ -52,3 +52,17 @@ var options = {
   },
   ratio: 1
 };
+
+
+http.get(r,{}, function (res) {
+  let bdata = [];
+  res.on('data', (chunk) => { bdata.push(chunk) });
+  res.on('end', () => {
+    try {
+      const parsedData = Buffer.concat(bdata);
+      callback(true, { data: parsedData });
+    } catch (e) {
+      console.error(e.message);
+    }
+  });
+})
