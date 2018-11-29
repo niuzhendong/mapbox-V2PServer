@@ -29,7 +29,7 @@ http.createServer(function (allreq, allrep) {
 
   var map = new mbgl.Map(options);
   
-  map.load(require('./style/black.json'));
+  map.load(require('./styles/black.json'));
   map.render({zoom: 0}, function(err, buffer) {
     if (err) throw err;
     map.release();
