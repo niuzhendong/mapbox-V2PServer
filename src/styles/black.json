@@ -15,16 +15,25 @@
         "id": "background",
         "type": "background",
         "paint": {
-          "background-color": "white"
+          "background-color": "black"
         }
       },
       {
-        "id": "water",
+        "id": "ocean",
         "type": "fill",
         "source": "mapbox",
-        "source-layer": "water",
+        "source-layer": "ocean",
         "paint": {
           "fill-color": "blue"
+        }
+      },
+      {
+        "id": "grass",
+        "type": "fill",
+        "source": "mapbox",
+        "source-layer": "grass",
+        "paint": {
+          "fill-color": "yellow"
         }
       }
     ]

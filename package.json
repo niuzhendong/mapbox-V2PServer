@@ -5,14 +5,12 @@
   "license": "Apache-2.0",
   "devDependencies": {},
   "scripts": {
-    "server": "node src/index.js",
-    "suite": "npm run test-suite"
+    "start": "node src/index.js",
+    "server": "pm2 start src/index.js"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-native": "^4.1.0",
     "axios": "^0.18.0",
-    "encoding": "^0.1.12",
-    "request": "^2.88.0",
     "sharp": "^0.21.0"
   }
 }
